@@ -14,6 +14,7 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
+        self.tail = None
 
     def __repr__(self):
         nodes = []
@@ -25,15 +26,17 @@ class LinkedList:
 
     def add_to_head(self, data):
         new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+            return
         new_node.next = self.head
         self.head = new_node
 
     def add_to_end(self, data):
         new_node = Node(data)
-        current = self.head
-        while current.next:
-            current = current.next
-        current.next = new_node
+        new_node = self.tail.next
+        self.tail = new_node
 
     def remove_head(self):
         new_node = self.head
